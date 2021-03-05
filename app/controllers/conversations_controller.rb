@@ -1,5 +1,5 @@
 class ConversationsController < ApplicationController
-  before_action :set_conversation, only: %i[ show edit update destroy ]
+  before_action :set_conversation, only: %i[ show destroy ]
 
   # GET /conversations or /conversations.json
   def index
@@ -15,17 +15,13 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.new
   end
 
-  # GET /conversations/1/edit
-  def edit
-  end
-
   # POST /conversations or /conversations.json
   def create
-    @conversation = Conversation.new(conversation_params)
+    @conversation = current_user.conversations.build(conversation_params)
 
     respond_to do |format|
       if @conversation.save
-        format.html { redirect_to @conversation, notice: "Conversation was successfully created." }
+        format.html { redirect_to @conversation, notice: "Text message sent to friend." }
         format.json { render :show, status: :created, location: @conversation }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -34,18 +30,22 @@ class ConversationsController < ApplicationController
     end
   end
 
+  # GET /conversations/1/edit
+  # def edit
+  # end
+
   # PATCH/PUT /conversations/1 or /conversations/1.json
-  def update
-    respond_to do |format|
-      if @conversation.update(conversation_params)
-        format.html { redirect_to @conversation, notice: "Conversation was successfully updated." }
-        format.json { render :show, status: :ok, location: @conversation }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @conversation.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @conversation.update(conversation_params)
+  #       format.html { redirect_to @conversation, notice: "Conversation was successfully updated." }
+  #       format.json { render :show, status: :ok, location: @conversation }
+  #     else
+  #       format.html { render :edit, status: :unprocessable_entity }
+  #       format.json { render json: @conversation.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /conversations/1 or /conversations/1.json
   def destroy
@@ -64,6 +64,6 @@ class ConversationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def conversation_params
-      params.fetch(:conversation, {})
+      params.fetch(:conversation, {}).permit(:name, :phone, :text_message)
     end
 end

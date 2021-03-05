@@ -2,32 +2,27 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  first_name :string
-#  last_name  :string
-#  email      :string
-#  phone      :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :bigint           not null, primary key
+#  first_name      :string
+#  last_name       :string
+#  email           :string
+#  phone           :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  password_digest :string
 #
-require 'bcrypt'
-
 class User < ApplicationRecord
-  include BCrypt
-  attr_accessor :password_hash, :password_confirmation
+  has_secure_password
 
-  has_many :conversations
+  has_many :conversations, dependent: :destroy
 
   validates :first_name, presence: true
-  validates :password, presence: true, length: { minimum: 6 }
-
-
-  def password
-    @password ||= Password.new(password_hash)
-  end
-
-  def password=(new_password)
-    @password = Password.create(new_password)
-    self.password_hash = @password
+  validates :email,
+    format: { with: /\A(.+)@(.+)\z/, message: "Email invalid"  },
+            uniqueness: { case_sensitive: false },
+            length: { minimum: 4, maximum: 254 }
+  
+  def full_name
+    "#{first_name} #{last_name}"
   end
 end
