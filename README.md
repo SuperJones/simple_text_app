@@ -2,6 +2,8 @@
 
 TO DO:
 
+- [ ] Reply to the sent text message from the device and store the reply in the database.
+- [ ] Show sent and received messages.
 - [ ] Add and Update specs (Need to create user with password and sign in user otherwise specs fail at validation)
 - [ ] Link signup, login/logout and root page together for seemless experience
 - [ ] Add consistent design for each page with headers/menu
