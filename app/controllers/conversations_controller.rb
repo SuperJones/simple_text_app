@@ -21,6 +21,8 @@ class ConversationsController < ApplicationController
 
     respond_to do |format|
       if @conversation.save
+        TwilioTextMessenger.new(@conversation.text_message, @conversation.phone).call
+
         format.html { redirect_to @conversation, notice: "Text message sent to friend." }
         format.json { render :show, status: :created, location: @conversation }
       else
@@ -29,23 +31,6 @@ class ConversationsController < ApplicationController
       end
     end
   end
-
-  # GET /conversations/1/edit
-  # def edit
-  # end
-
-  # PATCH/PUT /conversations/1 or /conversations/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @conversation.update(conversation_params)
-  #       format.html { redirect_to @conversation, notice: "Conversation was successfully updated." }
-  #       format.json { render :show, status: :ok, location: @conversation }
-  #     else
-  #       format.html { render :edit, status: :unprocessable_entity }
-  #       format.json { render json: @conversation.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
 
   # DELETE /conversations/1 or /conversations/1.json
   def destroy

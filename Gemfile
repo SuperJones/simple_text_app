@@ -12,6 +12,7 @@ gem 'rails', '~> 6.1.3'
 gem 'sass-rails', '>= 6'
 gem 'pg'
 gem 'turbolinks', '~> 5'
+gem 'twilio-ruby'
 gem 'webpacker', '~> 5.0'
 
 # Use Active Storage variant
