@@ -14,15 +14,15 @@
 
     <div class="form-group"> 
       <%= f.label :name, 'Name'%>
-      <%= f.text_field :name, class: "form-control"%>
+      <%= f.text_field :name, class: "form-control", placeholder: "Enter a name"%>
     </div>
     <div class="form-group">
       <%= f.label :phone, 'Send to Phone Number'%>
-      <%= f.text_field :phone, class: "form-control"%> 
+      <%= f.text_field :phone, class: "form-control", placeholder: "+18005551234"%> 
     </div>
     <div class="form-group">
       <%= f.label :text_message, "Message"%>
-      <%= f.text_area :text_message, class: "form-control"%>
+      <%= f.text_area :text_message, class: "form-control", placeholder: "Enter a message"%>
     </div>
     <div class="actions"> 
       <%= f.submit "Send Message", class: "btn btn-success"%>
