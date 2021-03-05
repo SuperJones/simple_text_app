@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+TO DO:
 
-Things you may want to cover:
-
-* Ruby version
+- [ ] Add and Update specs (Need to create user with password and sign in user otherwise specs fail at validation)
+- [ ] Link signup, login/logout and root page together for seemless experience
+- [ ] Add consistent design for each page with headers/menu
+- [ ] Set up phone input to be similar to twilio where there is a country code drop down
+- [ ] Do Research on other phone methods mentioned ( bandwidth, Plivo, Nexmo). Wonder if there is a way to accept current user phone as FROM and allow user to input TO phone number
 
 * System dependencies
-
-* Configuration
+  Twilio account needed. Using twilio env variables.
 
 * Database creation
+  Using PostgreSQL
 
-* Database initialization
+* Test suite
+  Using Rspec
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
