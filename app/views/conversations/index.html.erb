@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+<br>
+
+<div class="row d-flex justify-content-center mt-100 mb-100">
+    <div class="col-lg-6">
+        <div class="card">
+            <%= link_to 'New Conversation', new_conversation_path %>
+            <div class="card-body text-center">
+                <h1 class="card-title">Conversations</h1>
+            </div>
+            <div class="message-widgets">
+                <% @conversations.each do |conversation| %>
+                  <div class="d-flex flex-row message-row m-t-0">
+                      <div class="p-2"><img src="https://gravatar.com/avatar/821e88cedbb1b480df709005bc004a97?s=200&d=robohash&r=x" alt="user" width="50" class="rounded-circle"></div>
+                      <div class="message-text w-100">
+                          <h2 class="font-medium"><%= current_user.full_name %></h2> 
+                          <span>Message: </span><span class="m-b-15 d-block"><%= conversation.text_message %> </span>
+                          <div class="message-footer"> 
+                              <%= link_to 'Show', conversation, class:"btn btn-success btn-sm" %>
+                              <%= link_to 'Destroy', conversation, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm" %>
+                          </div>
+                      </div>
+                  </div> 
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
+  <%= form_with(model: conversation) do |f| %>
+    <% if conversation.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(conversation.errors.count, "error") %> prohibited this conversation from being saved:</h2>
+
+        <ul>
+          <% conversation.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group"> 
+      <%= f.label :name, 'Name'%>
+      <%= f.text_field :name, class: "form-control", placeholder: "Enter a name"%>
+    </div>
+    <div class="form-group">
+      <%= f.label :phone, 'Send to Phone Number'%>
+      <%= f.text_field :phone, class: "form-control", placeholder: "+18005551234"%> 
+    </div>
+    <div class="form-group">
+      <%= f.label :text_message, "Message"%>
+      <%= f.text_area :text_message, class: "form-control", placeholder: "Enter a message"%>
+    </div>
+    <div class="actions"> 
+      <%= f.submit "Send Message", class: "btn btn-success"%>
+    </div>
+  <% end %>
+</div>
